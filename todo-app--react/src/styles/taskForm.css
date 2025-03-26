@@ -1,0 +1,43 @@
+/* src/styles/taskForm.css */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type="text"],
+select {
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+label {
+  font-size: 16px;
+  font-weight: 600;
+}

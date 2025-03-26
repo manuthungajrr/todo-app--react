@@ -1,0 +1,166 @@
+.task-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  /* max-width: 600px; */
+  font-family: "Arial", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.task-card.has-parent-task {
+  padding-bottom: 40px; /* Increase padding if there's a parent task */
+}
+
+.task-top-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.task-card .task-dependency .task-card {
+  margin-top: 10px; /* You can further adjust the spacing */
+}
+
+.task-id {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.task-tags {
+  display: flex;
+  gap: 8px;
+}
+
+.task-tags span {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 12px;
+  color: white;
+}
+
+.priority {
+  background-color: #e74c3c; /* Red */
+}
+
+.status {
+  background-color: #f1c40f; /* Yellow */
+}
+
+.high {
+  background-color: #f68376; /* Red */
+}
+
+.medium {
+  background-color: #ffc464; /* Orange */
+}
+
+.low {
+  background-color: #55ca86; /* Green */
+}
+
+.pending {
+  background-color: #f1c40f;
+  color: black;
+} /* Yellow */
+
+.done {
+  background-color: #2ecc71;
+} /* Green */
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.task-actions button {
+  border: none;
+  /* background: none; */
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.edit-btn {
+  background-color: #3498db;
+}
+
+.edit-btn:hover {
+  background-color: #3498db; /* Light gray background on hover */
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+  background-color: #e74c3c; /* Light red background on hover */
+}
+
+.task-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.task-title {
+  font-style: italic;
+  font-size: 16px;
+  margin-top: 12px;
+  text-align: start;
+}
+
+.task-dependency {
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #fcfcfc;
+}
+
+.confirmation-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.confirm-btn-delete .confirm-btn-update,
+.cancel-btn {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.confirm-btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.confirm-btn-update {
+  background-color: #28b415;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #abababa7;
+  color: white;
+}

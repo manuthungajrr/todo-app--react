@@ -1,0 +1,66 @@
+/* src/styles/taskList.css */
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+@media (min-width: 600px) {
+  .task-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .task-card {
+    width: 100%; /* Each card takes up about half of the width */
+  }
+}
+
+.task-list-container {
+  margin-top: 60px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filters input,
+.filters select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filters button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.filters button:hover {
+  background-color: #0056b3;
+}
+
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
