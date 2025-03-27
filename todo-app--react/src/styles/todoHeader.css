@@ -1,42 +1,37 @@
-/* Styles for the button */
 .icon-button {
-  background-color: #007bff; /* Change to your preferred color */
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 50%; /* Makes it circular */
-  width: 25px; /* Adjust the size */
-  height: 25px; /* Adjust the size */
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px; /* Adjust icon size */
+  font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-/* Hover effect */
 .icon-button:hover {
-  background-color: #0056b3; /* Change to your hover color */
+  background-color: #0056b3;
 }
 
 .icon-button:focus {
   outline: none;
 }
 
-/* Styles for the task header */
 .task-header {
   margin-top: 60px;
   display: flex;
-  align-items: center; /* Vertically centers the header text and button */
-  justify-content: center; /* Ensure there is space between the text and the button */
+  align-items: center;
+  justify-content: center;
 }
-
 .task-header h3 {
-  margin: 0; /* Remove default margin */
-  font-size: 20px; /* Adjust font size if needed */
+  margin: 0;
+  font-size: 25px;
 }
 
-/* Optional: If you want some spacing between the text and the button */
 .task-header .icon-button {
-  margin-left: 10px; /* Adjust to your liking */
+  margin-left: 10px;
 }

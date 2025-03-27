@@ -14,7 +14,7 @@
   }
 
   .task-card {
-    width: 100%; /* Each card takes up about half of the width */
+    width: 100%;
   }
 }
 
@@ -39,9 +39,10 @@
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 2px 4px;
   cursor: pointer;
   border-radius: 5px;
+  height: 50px;
 }
 
 .filters button:hover {
@@ -63,4 +64,56 @@
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.pagination button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination .page-number {
+  display: flex;
+  gap: 5px;
+}
+
+.pagination .page-number button {
+  background-color: white;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination .page-number button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination .page-number button:hover {
+  background-color: #0056b3;
+  color: white;
 }

@@ -17,10 +17,17 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const fetchTasks = async () => {
+  // Pagination States
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const pageSize = 10; // Set number of tasks per page
+
+  const fetchTasks = async (page = 1) => {
     try {
       const queryParams = new URLSearchParams({
         user_id: "1",
+        page: page.toString(),
+        limit: pageSize.toString(),
         ...(search && { search }),
         ...(status && { status }),
         ...(priority && { priority }),
@@ -34,6 +41,8 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
 
       if (response.data.status === 200 && response.data.success) {
         setTasks(response.data.data);
+        setTotalPages(response.data.pagination.totalPages);
+        setCurrentPage(response.data.pagination.currentPage);
       } else {
         console.error("Error fetching tasks:", response.data.message);
       }
@@ -48,15 +57,10 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
         `http://localhost:8080/api/tasks/${id}`
       );
 
-      console.log("RESS", response);
       if (response.status === 201) {
-        // Re-fetch tasks after successful deletion
-        fetchTasks();
+        fetchTasks(currentPage);
       } else {
-        console.error(
-          "Error occurred while deleting the task",
-          response.data.message
-        );
+        console.error("Error occurred while deleting the task");
       }
     } catch (error) {
       console.error("Error occurred while deleting the task", error);
@@ -69,15 +73,10 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
         `http://localhost:8080/api/tasks/${id}/complete`
       );
 
-      console.log("RESS", response);
       if (response.status === 201) {
-        // Re-fetch tasks after marking a task as complete
-        fetchTasks();
+        fetchTasks(currentPage);
       } else {
-        console.error(
-          "Error occurred while completing the task",
-          response.data.message
-        );
+        console.error("Error occurred while completing the task");
       }
     } catch (error) {
       console.error("Error occurred while completing the task", error);
@@ -94,12 +93,56 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
     setPriority("");
     setStartDate("");
     setEndDate("");
-    fetchTasks(); // Re-fetch tasks with default filters
+    fetchTasks(1);
   };
 
   useEffect(() => {
-    fetchTasks(); // Fetch tasks when the component mounts
+    fetchTasks();
   }, []);
+
+  const renderPagination = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          className={currentPage === i ? "active" : ""}
+          onClick={() => fetchTasks(i)}
+        >
+          {i}
+        </button>
+      );
+    }
+
+    return (
+      <div className="pagination">
+        <button onClick={() => fetchTasks(1)} disabled={currentPage === 1}>
+          ⏮ First
+        </button>
+        <button
+          onClick={() => fetchTasks(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          ◀ Previous
+        </button>
+
+        <div className="page-number">{pageNumbers}</div>
+
+        <button
+          onClick={() => fetchTasks(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next ▶
+        </button>
+        <button
+          onClick={() => fetchTasks(totalPages)}
+          disabled={currentPage === totalPages}
+        >
+          Last ⏭
+        </button>
+      </div>
+    );
+  };
 
   return (
     <div className="task-list-container">
@@ -136,10 +179,11 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
           onChange={(e) => setEndDate(e.target.value)}
         />
 
-        <button onClick={fetchTasks}>Apply Filters</button>
-        {/* Reset Filters Button */}
+        <button onClick={() => fetchTasks(1)}>Apply Filters</button>
         <button onClick={resetFilters}>Reset Filters</button>
       </div>
+
+      {renderPagination()}
 
       {/* Task List */}
       <div className="task-list">
