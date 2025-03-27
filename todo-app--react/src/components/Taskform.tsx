@@ -41,7 +41,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, isUpdate }) => {
   const fetchTasks = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/tasks?user_id=1"
+        `${process.env.REACT_APP_API_BASE_URL}/tasks?user_id=1`
       );
 
       console.log("RESS", response);
@@ -58,7 +58,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, isUpdate }) => {
   const fetchTasksById = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/tasks/${taskId}`
+        `${process.env.REACT_APP_API_BASE_URL}/tasks/${taskId}`
       );
 
       console.log("RESSiii", response);
@@ -119,11 +119,14 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, isUpdate }) => {
 
       if (isUpdate) {
         response = await axios.put(
-          `http://localhost:8080/api/tasks/${taskId}`,
+          `${process.env.REACT_APP_API_BASE_URL}/tasks/${taskId}`,
           newTask
         );
       } else {
-        response = await axios.post("http://localhost:8080/api/tasks", newTask);
+        response = await axios.post(
+          `${process.env.REACT_APP_API_BASE_URL}/tasks`,
+          newTask
+        );
       }
 
       onSubmit(response.data); // Call onSubmit to update the parent component with the new task

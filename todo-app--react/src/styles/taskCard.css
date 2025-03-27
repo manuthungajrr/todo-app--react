@@ -10,7 +10,7 @@
 }
 
 .task-card.has-parent-task {
-  padding-bottom: 40px; /* Increase padding if there's a parent task */
+  padding-bottom: 40px;
 }
 
 .task-top-header {
@@ -20,7 +20,7 @@
 }
 
 .task-card .task-dependency .task-card {
-  margin-top: 10px; /* You can further adjust the spacing */
+  margin-top: 10px;
 }
 
 .task-id {
@@ -43,33 +43,33 @@
 }
 
 .priority {
-  background-color: #e74c3c; /* Red */
+  background-color: #e74c3c;
 }
 
 .status {
-  background-color: #f1c40f; /* Yellow */
+  background-color: #f1c40f;
 }
 
 .high {
-  background-color: #f68376; /* Red */
+  background-color: #f68376;
 }
 
 .medium {
-  background-color: #ffc464; /* Orange */
+  background-color: #ffc464;
 }
 
 .low {
-  background-color: #55ca86; /* Green */
+  background-color: #55ca86;
 }
 
 .pending {
   background-color: #f1c40f;
   color: black;
-} /* Yellow */
+}
 
 .done {
   background-color: #2ecc71;
-} /* Green */
+}
 
 .task-actions {
   display: flex;
@@ -88,7 +88,7 @@
 }
 
 .edit-btn:hover {
-  background-color: #3498db; /* Light gray background on hover */
+  background-color: #3498db;
 }
 
 .delete-btn {
@@ -96,7 +96,7 @@
 }
 
 .delete-btn:hover {
-  background-color: #e74c3c; /* Light red background on hover */
+  background-color: #e74c3c;
 }
 
 .task-details {
