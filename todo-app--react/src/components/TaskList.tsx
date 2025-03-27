@@ -4,6 +4,7 @@ import axios from "axios";
 import { Task } from "../types/Task";
 import TaskCard from "./TaskCard";
 import "../styles/taskList.css";
+import Loader from "./Loader";
 
 interface TaskListProps {
   onUpdate: (id?: number) => void;
@@ -20,7 +21,9 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
   // Pagination States
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const pageSize = 10; // Set number of tasks per page
+  const pageSize = 10;
+
+  const [loading, setLoading] = useState(false);
 
   const fetchTasks = async (page = 1) => {
     try {
@@ -35,9 +38,11 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
         ...(endDate && { endDate }),
       }).toString();
 
+      setLoading(true);
       const response = await axios.get(
-        `http://localhost:8080/api/tasks?${queryParams}`
+        `${process.env.REACT_APP_API_BASE_URL}/tasks?${queryParams}`
       );
+      setLoading(false);
 
       if (response.data.status === 200 && response.data.success) {
         setTasks(response.data.data);
@@ -53,9 +58,11 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
 
   const deleteTask = async (id?: number) => {
     try {
+      setLoading(true);
       const response = await axios.delete(
-        `http://localhost:8080/api/tasks/${id}`
+        `${process.env.REACT_APP_API_BASE_URL}/tasks/${id}`
       );
+      setLoading(false);
 
       if (response.status === 201) {
         fetchTasks(currentPage);
@@ -69,9 +76,11 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
 
   const markAsComplete = async (id?: number) => {
     try {
+      setLoading(true);
       const response = await axios.put(
-        `http://localhost:8080/api/tasks/${id}/complete`
+        `${process.env.REACT_APP_API_BASE_URL}/tasks/${id}/complete`
       );
+      setLoading(false);
 
       if (response.status === 201) {
         fetchTasks(currentPage);
@@ -144,7 +153,9 @@ const TaskList: React.FC<TaskListProps> = ({ onUpdate }) => {
     );
   };
 
-  return (
+  return loading ? (
+    <Loader fullScreen />
+  ) : (
     <div className="task-list-container">
       {/* Filters UI */}
       <div className="filters">
